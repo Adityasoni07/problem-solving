@@ -1,3 +1,3 @@
-# Contests
+# Problems
 
-Stores weekly and biweekly contest solutions.
+Stores solved LeetCode problems.
