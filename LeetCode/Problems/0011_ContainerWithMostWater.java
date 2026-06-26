@@ -5,17 +5,14 @@ class Solution {
             w = R - L;
             if (height[L] < height[R]) {
                 h = height[L];
+                L++;
             } else {
                 h = height[R];
+                R--;
             }
             int totalWater = h * w;
             if (totalWater > mostWater) {
                 mostWater = totalWater;
-            }
-            if (height[L] < height[R]) {
-                L++;
-            } else {
-                R--;
             }
         }
         return mostWater;
