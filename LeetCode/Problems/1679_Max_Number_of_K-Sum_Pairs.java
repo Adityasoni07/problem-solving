@@ -1,21 +1,21 @@
+import java.util.HashMap;
+
 class Solution {
     public int maxOperations(int[] nums, int k) {
-        Arrays.sort(nums);
-        int left = 0;
-        int right = nums.length - 1;
+        HashMap<Integer, Integer> map = new HashMap<>();
         int ans = 0;
-        while (left < right) {
-            int sum = nums[left] + nums[right];
-            if (sum == k) {
+
+        for (int num : nums) {
+            int need = k - num;
+
+            if (map.getOrDefault(need, 0) > 0) {
                 ans++;
-                left++;
-                right--;
-            } else if (sum > k) {
-                right--;
+                map.put(need, map.get(need) - 1);
             } else {
-                left++;
+                map.put(num, map.getOrDefault(num, 0) + 1);
             }
         }
+
         return ans;
     }
 }
