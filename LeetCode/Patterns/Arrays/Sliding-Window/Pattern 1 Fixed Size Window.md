@@ -68,11 +68,17 @@ Think **Fixed Size Window** when you see:
 
 ## Important Problems
 
-- 643. Maximum Average Subarray I
-- 1456. Maximum Number of Vowels in a Substring of Given Length
-- 1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
-- 2461. Maximum Sum of Distinct Subarrays With Length K
-- 1423. Maximum Points You Can Obtain from Cards
+643. Maximum Average Subarray I
+644. Maximum Number of Vowels in a Substring of Given Length
+645. Minimum Recolors to Get K Consecutive Black Blocks
+646. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+647. Maximum Sum of Distinct Subarrays With Length K
+648. Grumpy Bookstore Owner
+649. Permutation in String
+650. Find All Anagrams in a String
+651. K Radius Subarray Averages
+652. Maximum Points You Can Obtain from Cards
+653. Substring with Concatenation of All Words (optional challenge)
 
 ---
 
