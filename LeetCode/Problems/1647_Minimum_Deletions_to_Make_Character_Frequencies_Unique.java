@@ -1,44 +1,24 @@
+import java.util.HashSet;
+
 class Solution {
-    int map[];
-    int validIdx;
-
-    public int validIndex() {
-        while (validIdx > 0) {
-            if (map[validIdx] == 0) {
-                return validIdx;
-            }
-            validIdx--;
-        }
-        return 0;
-    }
-
     public int minDeletions(String s) {
-        int n = s.length();
-        int freq[] = new int[26];
-        validIdx = 100000;
-        for (int i = 0; i < n; i++) {
-            int curr = s.charAt(i) - 'a';
-            freq[curr]++;
+        int[] freq = new int[26];
+
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
         }
-        map = new int[100001];
-        for (int i = 0; i < 26; i++) {
-            if (freq[i] > 0) {
-                map[freq[i]]++;
+
+        HashSet<Integer> used = new HashSet<>();
+        int deletions = 0;
+
+        for (int f : freq) {
+            while (f > 0 && used.contains(f)) {
+                f--;
+                deletions++;
             }
+            used.add(f);
         }
-        int ans = 0;
-        for (int i = 100000; i > 0; i--) {
-            validIdx = Math.min(validIdx, i - 1);
-            if (map[i] > 1) {
-                int j = map[i] - 1;
-                while (j > 0) {
-                    int idx = validIndex();
-                    map[idx] = 1;
-                    ans += (i - idx);
-                    j--;
-                }
-            }
-        }
-        return ans;
+
+        return deletions;
     }
 }
