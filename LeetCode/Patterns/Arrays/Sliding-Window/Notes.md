@@ -37,21 +37,19 @@ for (int right = 0; right < n; right++) {
 ```
 Sliding Window
 
+├── Fixed Size Window (Pattern 1)
 │
-├── Pattern 1
-│   Fixed Size Window
-│
-├── Pattern 2
-│   Expand Until Valid
-│   (Longest)
-│
-├── Pattern 3
-│   Shrink Until Valid
-│   (Minimum)
-│
-├── Pattern 4
-│   Count Windows
-│
-└── Pattern 5
-    Multi Constraint Window
+└── Variable Size Window
+    │
+    ├── Pattern 2
+    │   Expand Until Valid (Longest)
+    │
+    ├── Pattern 3
+    │   Shrink Until Valid (Minimum)
+    │
+    ├── Pattern 4
+    │   Count Windows
+    │
+    └── Pattern 5
+        Multi Constraint Window
 ```
