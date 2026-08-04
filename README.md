@@ -5,4 +5,4 @@ This repository contains:
 - LeetCode solutions
 - DSA notes
 - Contest solutions
-- Algorithm templates
+- Algorithm templates1
