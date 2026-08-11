@@ -7,6 +7,7 @@ Pattern 2 — Reversal
 ├── 3. Reverse in K Groups
 ├── 4. Reverse Alternate K Groups
 └── 5. Reverse for Palindrome
+├── 6. 2074. Reverse Nodes in Even Length Groups
 
 Before learning these variations, master one core technique:
 

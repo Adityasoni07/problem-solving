@@ -17,45 +17,35 @@ class Solution {
     }
 
     public ListNode reverseEvenLengthGroups(ListNode head) {
-        ListNode tempHead = head;
-        int size = 0;
-        while (tempHead != null) {
-            size++;
-            tempHead = tempHead.next;
-        }
-        ListNode leftNode = head;
-        int i = 2;
-        size--;
-        while (size > 0) {
-            if ((i <= size && i % 2 == 1) || (size <= i && size % 2 == 1)) {
-                int j = i;
-                while (leftNode != null && j > 0) {
-                    leftNode = leftNode.next;
+        int groupSize = 2;
+        ListNode point = head.next;
+        ListNode leftHead = head;
+        while (point != null) {
+            int size = 0;
+            while (point != null && size < groupSize) {
+                point = point.next;
+                size++;
+            }
+            if (size % 2 == 0) {
+                ListNode prev = point;
+                ListNode first = leftHead.next;
+                ListNode tempNext = first;
+                while (first != point) {
+                    ListNode next = first.next;
+                    first.next = prev;
+                    prev = first;
+                    first = next;
+                }
+                leftHead.next = prev;
+                leftHead = tempNext;
+            } else {
+                int j = size;
+                while (j != 0) {
+                    leftHead = leftHead.next;
                     j--;
                 }
-                size -= i;
-            } else {
-                int j = 1;
-                ListNode temp = leftNode;
-                while (temp.next != null && j <= i) {
-                    j++;
-                    temp = temp.next;
-                }
-                ListNode prev = temp.next;
-                ListNode curr = leftNode.next;
-                ListNode tempNext = leftNode.next;
-                ListNode second = prev;
-                while (curr != second) {
-                    ListNode next = curr.next;
-                    curr.next = prev;
-                    prev = curr;
-                    curr = next;
-                }
-                leftNode.next = prev;
-                leftNode = tempNext;
-                size -= i;
             }
-            i++;
+            groupSize++;
         }
         return head;
     }

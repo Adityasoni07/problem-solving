@@ -42,9 +42,6 @@ class Solution {
             curr = next;
         }
         leftNode.next = prev;
-        if (left == 1) {
-            return prev;
-        }
-        return head;
+        return dummy.next;
     }
 }
