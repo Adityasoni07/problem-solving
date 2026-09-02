@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Solution {
     public class Pair {
         int idx;
@@ -18,29 +20,7 @@ class Solution {
         int mid = left + (right - left) / 2;
         partition(pairArr, left, mid);
         partition(pairArr, mid + 1, right);
-        count(pairArr, left, mid, right);
         merge(pairArr, left, mid, right);
-    }
-
-    public void count(Pair[] pairArr, int left, int mid, int right) {
-        int i = left;
-        int j = mid + 1;
-        int rightSmallerCount = 0;
-
-        while (i <= mid && j <= right) {
-            if (pairArr[i].val > pairArr[j].val) {
-                rightSmallerCount++;
-                j++;
-            } else {
-                counts[pairArr[i].idx] += rightSmallerCount;
-                i++;
-            }
-        }
-
-        while (i <= mid) {
-            counts[pairArr[i].idx] += rightSmallerCount;
-            i++;
-        }
     }
 
     public void merge(Pair[] pairArr, int left, int mid, int right) {
@@ -48,25 +28,24 @@ class Solution {
         int j = mid + 1;
         int k = 0;
         Pair[] newPairArr = new Pair[right - left + 1];
+        int rightSmallerCount = 0;
         while (i <= mid && j <= right) {
-            if (pairArr[i].val < pairArr[j].val) {
-                newPairArr[k] = new Pair(pairArr[i].idx, pairArr[i].val);
-                i++;
+            if (pairArr[i].val > pairArr[j].val) {
+                newPairArr[k++] = pairArr[j++];
+                rightSmallerCount++;
             } else {
-                newPairArr[k] = new Pair(pairArr[j].idx, pairArr[j].val);
-                j++;
+                newPairArr[k++] = pairArr[i];
+                counts[pairArr[i].idx] += rightSmallerCount;
+                i++;
             }
-            k++;
         }
         while (i <= mid) {
-            newPairArr[k] = new Pair(pairArr[i].idx, pairArr[i].val);
+            newPairArr[k++] = pairArr[i];
+            counts[pairArr[i].idx] += rightSmallerCount;
             i++;
-            k++;
         }
         while (j <= right) {
-            newPairArr[k] = new Pair(pairArr[j].idx, pairArr[j].val);
-            j++;
-            k++;
+            newPairArr[k++] = pairArr[j++];
         }
 
         for (int x = 0; x < newPairArr.length; x++) {
