@@ -1,33 +1,45 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int i = 0, j = 0, len = 0, m = nums1.length, n = nums2.length;
-        double arr[] = new double[m + n];
-        double median = 0;
-        while (i < m && j < n) {
-            if (nums1[i] <= nums2[j]) {
-                arr[len] = nums1[i];
-                i++;
-            } else {
-                arr[len] = nums2[j];
-                j++;
+        int m = nums1.length;
+        int n = nums2.length;
+        if (n < m) {
+            return findMedianSortedArrays(nums2, nums1);
+        }
+        int leftSize = (m + n + 1) / 2;
+        int low = 0;
+        int high = m;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int ALeft = Integer.MIN_VALUE;
+            int ARight = Integer.MAX_VALUE;
+            int BLeft = Integer.MIN_VALUE;
+            int BRight = Integer.MAX_VALUE;
+            if (mid > 0) {
+                ALeft = nums1[mid - 1];
             }
-            len++;
+            if (mid < m) {
+                ARight = nums1[mid];
+            }
+            int rightmid = leftSize - mid;
+            if (rightmid > 0) {
+                BLeft = nums2[rightmid - 1];
+            }
+            if (rightmid < n) {
+                BRight = nums2[rightmid];
+            }
+            if (ALeft <= BRight && BLeft <= ARight) {
+                int leftMax  =  (Math.max(ALeft, BLeft));
+                if ((m + n) % 2 == 1) {
+                    return leftMax;
+                }
+                return (leftMax + Math.min(ARight, BRight)) / 2.0;
+                
+            } else if (ALeft > BRight) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
         }
-        while (i < m) {
-            arr[len] = nums1[i];
-            i++;
-            len++;
-        }
-        while (j < n) {
-            arr[len] = nums2[j];
-            j++;
-            len++;
-        }
-        if ((m + n) % 2 == 0) {
-            median = (arr[len / 2] + arr[(len / 2) - 1]) / 2;
-        } else {
-            median = arr[len / 2];
-        }
-        return median;
+        return 0.0;
     }
 }
